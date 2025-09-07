@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -8,8 +9,9 @@ import passport from "passport";
 import "./config/passport.js";
 import userRoute from "./routes/User.js";
 import connectDB from "./config/mongo.js";
+import feedbackRoutes from "./routes/feedbackRoutes.js";
 
-dotenv.config();
+
 
 const app = express();
 
@@ -35,6 +37,8 @@ app.use(passport.initialize());
 
 app.use("/api/auth", userRoute);
 // app.use("/auth", userRoute);
+app.use("/api/feedback", feedbackRoutes);
+
 
 connectDB();
 
